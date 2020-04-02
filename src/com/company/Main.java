@@ -62,7 +62,7 @@ public class Main {
             Scanner myReader = new Scanner(myObj);
             String currentLine = "";
             String lineBreak = "\n";
-            String result = "";
+            String result = "Keyword;Description;Title EN;Title FR;Possible Values;Used by;Declaration Type";
             while (myReader.hasNextLine()) {
                 currentLine = myReader.nextLine();
                 String fixedLine = lineBreak;
@@ -84,7 +84,7 @@ public class Main {
                     String out4 = " ;";
                     String out5 = " ;";
                     String out6 = " ;";
-                    String out7 = " ;";
+                    String out7 = " ";
 
                     result += lineBreak +  out1 + out2 + out3 + out4 + out5 + out6 + out7 ;
 
