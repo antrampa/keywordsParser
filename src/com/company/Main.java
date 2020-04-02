@@ -36,7 +36,6 @@ public class Main {
                     }
                 }
 
-                //result += fixedLine + lineBreak + "</td></tr>";
                 result += fixedLine + lineBreak;
             }
             myReader.close();
@@ -66,7 +65,7 @@ public class Main {
             String result = "";
             while (myReader.hasNextLine()) {
                 currentLine = myReader.nextLine();
-                String fixedLine = lineBreak + "<tr>";
+                String fixedLine = lineBreak;
                 int keywordStarts = currentLine.indexOf("value=\"");
                 if(keywordStarts == -1) {
                     continue;
@@ -74,20 +73,20 @@ public class Main {
                 int keywordEnds = currentLine.indexOf("\">");
                 try {
                     String keyword = currentLine.substring(keywordStarts+"value=\"".length(), keywordEnds);
-                    String out1 = "<td><b>" + keyword + "</b></td>";
+                    String out1 = "" + keyword + ";";
                     System.out.println(out1);
 
-                    String out2 = "<td>&nbsp;</td>";
+                    String out2 = " ;";
 
                     String description = currentLine.substring(keywordEnds+"\">".length(), currentLine.indexOf("</op"));
-                    String out3 = "<td>" + description + "</td>";
+                    String out3 = "" + description + ";";
 
-                    String out4 = "<td>&nbsp;</td>";
-                    String out5 = "<td>&nbsp;</td>";
-                    String out6 = "<td>&nbsp;</td>";
-                    String out7 = "<td>&nbsp;</td>";
+                    String out4 = " ;";
+                    String out5 = " ;";
+                    String out6 = " ;";
+                    String out7 = " ;";
 
-                    result += lineBreak + "<tr>" + out1 + out2 + out3 + out4 + out5 + out6 + out7 + "</tr>";
+                    result += lineBreak +  out1 + out2 + out3 + out4 + out5 + out6 + out7 ;
 
                 }catch(Exception ex){
                     System.out.println("extractKeywords: " + ex.getMessage());
@@ -109,17 +108,9 @@ public class Main {
 
 
     private static void writeToHtmlFile(String fileName, String result) throws IOException {
-        String lineBreak = "\n";
-
         FileWriter fw = new FileWriter(fileName);
         BufferedWriter bw = new BufferedWriter(fw);
-
-        Writer writer2 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName),"utf-8"));
-        String outputTextStart = "<html><head></head><body><table>"+lineBreak;
-        String outputTextEnd = lineBreak+"</table></body></html>";
-
-        String outHtml = outputTextStart + result + outputTextEnd;
-
+        String outHtml = result;
         bw.write(outHtml);
         bw.flush();
         fw.close();
